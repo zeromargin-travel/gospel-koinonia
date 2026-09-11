@@ -97,15 +97,26 @@ document.addEventListener('DOMContentLoaded', () => {
           body: formData
         });
 
-        if (response.ok) {
+        const data = await response.json();
+
+        if (data.success === "true" || data.success === true) {
           formStatus.className = 'form-status success';
-          formStatus.innerHTML = `Thank you, <strong>${name}</strong>! Your message has been sent directly to our team. We will be in touch shortly.`;
+          formStatus.innerHTML = `Thank you, <strong>${name}</strong>! Your message has been sent directly to our email (yamasaki_jun@hotmail.com). We will be in touch shortly.`;
           formStatus.style.display = 'block';
           contactForm.reset();
+        } else if (data.message && data.message.includes('needs Activation')) {
+          formStatus.className = 'form-status error';
+          formStatus.innerHTML = `<strong>Action Required:</strong> FormSubmit sent an activation email to <strong>yamasaki_jun@hotmail.com</strong>.<br>Please check your inbox (or Junk / Spam folder) and click the <strong>"Activate Form"</strong> button to enable message delivery.`;
+          formStatus.style.display = 'block';
+        } else if (data.message && data.message.includes('web server')) {
+          formStatus.className = 'form-status error';
+          formStatus.innerHTML = `<strong>Notice:</strong> Please access via local server (http://localhost:8008) instead of file:// for form submission.`;
+          formStatus.style.display = 'block';
         } else {
-          // Fallback: If AJAX is rejected for any reason, submit normally
-          contactForm.submit();
-          return;
+          // Fallback message
+          formStatus.className = 'form-status error';
+          formStatus.innerHTML = data.message || 'Unable to send message right now. Please try again or email us directly.';
+          formStatus.style.display = 'block';
         }
       } catch (err) {
         console.error('Submission error:', err);
