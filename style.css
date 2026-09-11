@@ -72,14 +72,14 @@ body {
 }
 
 /* ==========================================================================
-   Fixed Ambient Top Background (Fixed, Translucent, Identity-diffused)
+   Fixed Ambient Top Background (Fixed, Clearer Presence, Identity-Softened)
    ========================================================================== */
 .fixed-ambient-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 640px;
+  height: 720px;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
@@ -92,13 +92,13 @@ body {
   width: 100%;
   height: 100%;
   background-image: url('hero_bg.png');
-  background-position: center 25%;
+  background-position: center 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  /* 人が識別できないくらいの半透明 & ソフトぼかし */
-  opacity: 0.20;
-  filter: blur(9px) saturate(1.15) brightness(1.02);
-  transform: scale(1.08); /* ぼかしによるフチの滲み防止 */
+  /* 写真の温かみがしっかり見える透明度 & 人物認識を和らげるソフトぼかし */
+  opacity: 0.50;
+  filter: blur(4px) saturate(1.18) brightness(1.03);
+  transform: scale(1.05);
   will-change: transform;
 }
 
@@ -110,8 +110,9 @@ body {
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(250, 248, 245, 0.2) 0%,
-    rgba(250, 248, 245, 0.55) 50%,
+    rgba(250, 248, 245, 0.05) 0%,
+    rgba(250, 248, 245, 0.25) 50%,
+    rgba(250, 248, 245, 0.88) 85%,
     rgba(250, 248, 245, 1) 100%
   );
 }
@@ -279,6 +280,19 @@ button, input, textarea, select {
   transform: translateY(-2px);
 }
 
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1EBE5B;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
 .btn-sm {
   padding: 9px 18px;
   font-size: 0.875rem;
@@ -386,7 +400,23 @@ button, input, textarea, select {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .header-actions {
+    gap: 8px;
+  }
+  .header-actions .btn-sm {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .header-actions .btn-outline {
+    display: none; /* Preserves header width on small screens, drawer has full Email button */
+  }
 }
 
 .mobile-menu-btn {
