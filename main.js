@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. Contact Form Submission (Client-side interactive simulation)
+  // 3. Contact Form Submission (Direct to yamasaki_jun@hotmail.com via FormSubmit)
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
 
   if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -83,25 +83,44 @@ document.addEventListener('DOMContentLoaded', () => {
       // Loading state
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending message...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
+      formStatus.style.display = 'none';
 
       const formData = new FormData(contactForm);
       const name = formData.get('name') || 'Friend';
 
-      setTimeout(() => {
-        // Successful mock submission
-        formStatus.className = 'form-status success';
-        formStatus.innerHTML = `Thank you, <strong>${name}</strong>! Your message has been received with warm thanks. We will be in touch shortly.`;
-        
-        contactForm.reset();
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/yamasaki_jun@hotmail.com', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          formStatus.className = 'form-status success';
+          formStatus.innerHTML = `Thank you, <strong>${name}</strong>! Your message has been sent directly to our team. We will be in touch shortly.`;
+          formStatus.style.display = 'block';
+          contactForm.reset();
+        } else {
+          // Fallback: If AJAX is rejected for any reason, submit normally
+          contactForm.submit();
+          return;
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        // Fallback: submit natively via POST to https://formsubmit.co/yamasaki_jun@hotmail.com
+        contactForm.submit();
+        return;
+      } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
+      }
 
-        // Auto hide success notice after 8 seconds
-        setTimeout(() => {
-          formStatus.style.display = 'none';
-          formStatus.className = 'form-status';
-        }, 8000);
-      }, 900);
+      // Auto hide success notice after 10 seconds
+      setTimeout(() => {
+        formStatus.style.display = 'none';
+      }, 10000);
     });
   }
 
