@@ -69,69 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. Contact Form Submission (Direct to yamasaki_jun@hotmail.com via FormSubmit)
+  // 3. Contact Form Submission (Temporarily disabled to prevent test notifications)
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
 
   if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnHtml = submitBtn.innerHTML;
 
-      // Loading state
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Sending message...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
-      formStatus.style.display = 'none';
+      submitBtn.innerHTML = '<span>Saved (Local Test)</span> <i class="fa-solid fa-check"></i>';
 
       const formData = new FormData(contactForm);
       const name = formData.get('name') || 'Friend';
 
-      try {
-        const response = await fetch('https://formsubmit.co/ajax/yamasaki_jun@hotmail.com', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json'
-          },
-          body: formData
-        });
+      formStatus.className = 'form-status success';
+      formStatus.innerHTML = `<strong>[Local Preview Mode]</strong> Thank you, <strong>${name}</strong>. (External email sending is currently PAUSED to avoid inbox spam).`;
+      formStatus.style.display = 'block';
 
-        const data = await response.json();
+      contactForm.reset();
 
-        if (data.success === "true" || data.success === true) {
-          formStatus.className = 'form-status success';
-          formStatus.innerHTML = `Thank you, <strong>${name}</strong>! Your message has been sent directly to our email (yamasaki_jun@hotmail.com). We will be in touch shortly.`;
-          formStatus.style.display = 'block';
-          contactForm.reset();
-        } else if (data.message && data.message.includes('needs Activation')) {
-          formStatus.className = 'form-status error';
-          formStatus.innerHTML = `<strong>Action Required:</strong> FormSubmit sent an activation email to <strong>yamasaki_jun@hotmail.com</strong>.<br>Please check your inbox (or Junk / Spam folder) and click the <strong>"Activate Form"</strong> button to enable message delivery.`;
-          formStatus.style.display = 'block';
-        } else if (data.message && data.message.includes('web server')) {
-          formStatus.className = 'form-status error';
-          formStatus.innerHTML = `<strong>Notice:</strong> Please access via local server (http://localhost:8008) instead of file:// for form submission.`;
-          formStatus.style.display = 'block';
-        } else {
-          // Fallback message
-          formStatus.className = 'form-status error';
-          formStatus.innerHTML = data.message || 'Unable to send message right now. Please try again or email us directly.';
-          formStatus.style.display = 'block';
-        }
-      } catch (err) {
-        console.error('Submission error:', err);
-        // Fallback: submit natively via POST to https://formsubmit.co/yamasaki_jun@hotmail.com
-        contactForm.submit();
-        return;
-      } finally {
+      setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
-      }
-
-      // Auto hide success notice after 10 seconds
-      setTimeout(() => {
-        formStatus.style.display = 'none';
-      }, 10000);
+      }, 2000);
     });
   }
 
