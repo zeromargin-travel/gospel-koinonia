@@ -69,33 +69,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. Contact Form Submission (Temporarily disabled to prevent test notifications)
+  // 3. Contact Form Submission (Live Production Mode via FormSubmit AJAX)
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
 
   if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnHtml = submitBtn.innerHTML;
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Saved (Local Test)</span> <i class="fa-solid fa-check"></i>';
+      submitBtn.innerHTML = '<span>Sending...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
+      formStatus.style.display = 'none';
 
       const formData = new FormData(contactForm);
-      const name = formData.get('name') || 'Friend';
+      const actionUrl = 'https://formsubmit.co/ajax/yamasaki_jun@hotmail.com';
 
-      formStatus.className = 'form-status success';
-      formStatus.innerHTML = `<strong>[Local Preview Mode]</strong> Thank you, <strong>${name}</strong>. (External email sending is currently PAUSED to avoid inbox spam).`;
-      formStatus.style.display = 'block';
+      try {
+        const response = await fetch(actionUrl, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
 
-      contactForm.reset();
+        const result = await response.json();
 
-      setTimeout(() => {
+        if (response.ok) {
+          formStatus.className = 'form-status success';
+          formStatus.innerHTML = '<strong>Thank you!</strong> Your message has been sent successfully. We will reach out to you shortly.';
+          formStatus.style.display = 'block';
+          contactForm.reset();
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (error) {
+        formStatus.className = 'form-status error';
+        formStatus.innerHTML = 'Sorry, there was an issue sending your message. Please reach out to us directly via WhatsApp.';
+        formStatus.style.display = 'block';
+      } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
-      }, 2000);
+      }
     });
   }
 
