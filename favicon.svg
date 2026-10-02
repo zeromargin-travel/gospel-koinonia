@@ -1,0 +1,23 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gkFaviconGrad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4E7060"/>
+      <stop offset="100%" stop-color="#2D4D3E"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="26" fill="url(#gkFaviconGrad)"/>
+
+  <!-- Left G: Living vine -->
+  <path d="M48 26 C30 26, 20 38, 20 52 C20 66, 32 76, 48 76" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M34 52 H48" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Central Cross -->
+  <path d="M50 18 V82" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+
+  <!-- Right K: Dove wings -->
+  <path d="M50 46 C60 36, 68 28, 80 26 C74 36, 64 44, 50 48" fill="#FFFFFF"/>
+  <path d="M50 52 C64 56, 74 64, 80 74 C68 72, 60 64, 50 54" fill="#FFFFFF"/>
+
+  <!-- Amber Core -->
+  <circle cx="50" cy="38" r="4.5" fill="#E28E4E"/>
+</svg>

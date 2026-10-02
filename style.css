@@ -330,6 +330,19 @@ button, input, textarea, select {
   gap: 12px;
 }
 
+.logo-symbol-svg {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(45, 77, 62, 0.22);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover .logo-symbol-svg {
+  transform: scale(1.05);
+}
+
 .logo-symbol {
   width: 40px;
   height: 40px;

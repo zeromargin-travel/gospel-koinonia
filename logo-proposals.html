@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-C Variations (Vine, Dove & Cross) | Gospel Koinonia Enschede</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --card-bg: #FFFFFF;
+      --text-main: #1E232B;
+      --text-muted: #647082;
+      --accent: #C86835;
+      --accent-gold: #C2913A;
+      --sage: #4E7060;
+      --sage-dark: #2D4D3E;
+      --border: #E8E1D5;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #EBF2EE;
+      color: var(--sage);
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      border: 1px solid rgba(78, 112, 96, 0.25);
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    p.lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .proposals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 860px) {
+      .proposals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proposal-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(30, 35, 43, 0.04);
+      transition: all 0.25s ease;
+    }
+
+    .proposal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(30, 35, 43, 0.08);
+      border-color: rgba(78, 112, 96, 0.45);
+    }
+
+    .proposal-card.recommended {
+      border: 2px solid var(--sage);
+    }
+
+    .card-preview-area {
+      background: linear-gradient(180deg, #F4F8F5 0%, #FFFFFF 100%);
+      padding: 44px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .proposal-badge-num {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--sage);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .card-body {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .concept-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .concept-subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--sage);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .concept-desc {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .meaning-list {
+      background: #FAF8F5;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .meaning-list strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .meaning-list ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meaning-list li {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meaning-list li i {
+      color: var(--sage);
+      font-size: 0.75rem;
+    }
+
+    .scales-preview {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .scale-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scale-item span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* Mockups */
+    .mockup-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .mockup-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .mockup-section p {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+
+    .header-mockups {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .header-preview-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      background: #FAF8F5;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .mockup-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mockup-brand-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .mockup-brand-sub {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mockup-dummy-nav {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 700px) {
+      .mockup-dummy-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Concept 3-C Deep Exploration</span>
+      <h1>"3-C" Vine, Dove & Cross Variations</h1>
+      <p class="lead">
+        Four distinct artistic and geometric variations centered on <strong>3-C (The Vine & Dove GK Cross)</strong>, maintaining the tranquil Sage Green palette with warm amber heart.
+      </p>
+    </header>
+
+    <div class="proposals-grid">
+
+      <!-- ==========================================
+           VARIATION 3-C1: Sculpted Wing Silhouettes (Refined Original)
+           ========================================== -->
+      <div class="proposal-card recommended">
+        <div class="card-preview-area">
+          <span class="proposal-badge-num">3-C1 (Refined Master)</span>
+
+          <!-- Large 120px SVG -->
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c1Grad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4E7060"/>
+                <stop offset="100%" stop-color="#2D4D3E"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" rx="26" fill="url(#c1Grad)"/>
+
+            <!-- Subtle background circle of communion -->
+            <circle cx="50" cy="50" r="37" stroke="#A9C7B6" stroke-width="1.8" opacity="0.3"/>
+
+            <!-- Left G: Fruitful living branch with gentle leaf curve -->
+            <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 30 77, 48 77 C50 77, 50 77, 50 77" stroke="#E1EFE7" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M34 52 H49" stroke="#E1EFE7" stroke-width="6.5" stroke-linecap="round"/>
+
+            <!-- Central Latin Cross Pillar -->
+            <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Right K: Sculpted Dove Wings (Graceful silhouette with feather taper) -->
+            <!-- Upper wing (Praise reaching to heaven) -->
+            <path d="M49 46 C58 35, 68 26, 81 24 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+            <!-- Lower wing (Outreach and welcoming embrace) -->
+            <path d="M49 53 C64 57, 75 66, 81 77 C69 75, 60 66, 49 56" fill="#FFFFFF"/>
+
+            <!-- Amber Heart / Holy Spirit Flame -->
+            <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <h3 class="concept-title">3-C1. Sculpted Wings & Vine</h3>
+          <span class="concept-subtitle">Pure Master of Concept 3-C</span>
+          <p class="concept-desc">
+            The direct refinement of 3-C. The right side features solid, sculpted dove wings (representing the Holy Spirit and praise) forming the <strong>K</strong>, while the left side forms an embracing living vine <strong>G</strong>, rooted on the central Cross with an amber flame at the heart.
+          </p>
+
+          <div class="meaning-list">
+            <strong>Key Highlights:</strong>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> <strong>Sculpted Wings:</strong> Solid white feathers for high contrast & impact</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Living Vine (G):</strong> Tender branch of fellowship (John 15:5)</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Amber Flame:</strong> Warm light of the Holy Spirit at the cross center</li>
+            </ul>
+          </div>
+
+          <div class="scales-preview">
+            <div class="scale-item">
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c1Grad)"/>
+                <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 30 77, 48 77" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M34 52 H49" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+                <path d="M49 46 C58 35, 68 26, 81 24 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+                <path d="M49 53 C64 57, 75 66, 81 77 C69 75, 60 66, 49 56" fill="#FFFFFF"/>
+                <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+              </svg>
+              <span>Header (40px)</span>
+            </div>
+            <div class="scale-item">
+              <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c1Grad)"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+                <path d="M26 40 H74" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+              </svg>
+              <span>Favicon (24px)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==========================================
+           VARIATION 3-C2: Dual Feather Stroke (Light & Aerodynamic)
+           ========================================== -->
+      <div class="proposal-card">
+        <div class="card-preview-area">
+          <span class="proposal-badge-num">3-C2 (Linear Harmony)</span>
+
+          <!-- Large 120px SVG -->
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c2Grad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4E7060"/>
+                <stop offset="100%" stop-color="#2D4D3E"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" rx="26" fill="url(#c2Grad)"/>
+
+            <!-- Left G: Continuous flowing line -->
+            <path d="M48 24 C28 24, 18 36, 18 50 C18 64, 28 76, 48 76" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+
+            <!-- Central Cross -->
+            <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+
+            <!-- Right K: Graceful double-curved wing lines (Airy & elegant) -->
+            <!-- Upper wing line -->
+            <path d="M49 48 C58 38, 66 28, 80 22" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M54 44 C62 34, 69 28, 77 24" stroke="#A9C7B6" stroke-width="3" stroke-linecap="round" opacity="0.7" fill="none"/>
+
+            <!-- Lower wing line -->
+            <path d="M49 52 C58 62, 66 72, 80 78" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M54 56 C62 66, 69 72, 77 76" stroke="#A9C7B6" stroke-width="3" stroke-linecap="round" opacity="0.7" fill="none"/>
+
+            <!-- Amber Heart Core -->
+            <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <h3 class="concept-title">3-C2. Linear Wing Harmonies</h3>
+          <span class="concept-subtitle">Airy, Elegant & Balanced Stroke Weight</span>
+          <p class="concept-desc">
+            Instead of solid fills, the dove wings of <strong>K</strong> are rendered with elegant layered line strokes. This creates a visually balanced weight with the vine stroke of <strong>G</strong>, resulting in an airy, sophisticated, and modern look.
+          </p>
+
+          <div class="meaning-list">
+            <strong>Key Highlights:</strong>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> <strong>Matched Stroke Weight:</strong> Uniform line harmony across G, K, and Cross</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Dual Feathers:</strong> Layered soft mint accents suggesting plumage</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Gentle Grace:</strong> Clean, breezy, and welcoming atmosphere</li>
+            </ul>
+          </div>
+
+          <div class="scales-preview">
+            <div class="scale-item">
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c2Grad)"/>
+                <path d="M48 24 C28 24, 18 36, 18 50 C18 64, 28 76, 48 76" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+                <path d="M49 48 C58 38, 66 28, 80 22" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M49 52 C58 62, 66 72, 80 78" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+              </svg>
+              <span>Header (40px)</span>
+            </div>
+            <div class="scale-item">
+              <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c2Grad)"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+                <path d="M26 40 H74" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+              </svg>
+              <span>Favicon (24px)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==========================================
+           VARIATION 3-C3: The Olive Leaf & Ascending Dove
+           ========================================== -->
+      <div class="proposal-card">
+        <div class="card-preview-area">
+          <span class="proposal-badge-num">3-C3 (Olive & Dove)</span>
+
+          <!-- Large 120px SVG -->
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c3Grad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4E7060"/>
+                <stop offset="100%" stop-color="#2D4D3E"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" rx="26" fill="url(#c3Grad)"/>
+
+            <!-- Left G: With small decorative olive leaves sprouting -->
+            <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 28 77, 48 77" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+            <!-- Small sprout leaf on the vine of G -->
+            <path d="M24 36 C24 30, 30 28, 34 32 C30 36, 26 36, 24 36 Z" fill="#A9C7B6"/>
+
+            <!-- Center Cross Pillar -->
+            <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Right K: Dynamic Dove with beak pointing to the Cross -->
+            <!-- Upper wing -->
+            <path d="M49 46 C60 36, 68 28, 81 25 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+            <!-- Lower body & tail feathers -->
+            <path d="M49 53 C64 57, 75 66, 81 77 C71 75, 62 67, 49 56" fill="#FFFFFF"/>
+            <!-- Small dove head / silhouette accent -->
+            <circle cx="56" cy="46" r="3.5" fill="#FFFFFF"/>
+
+            <!-- Amber Core Light -->
+            <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <h3 class="concept-title">3-C3. The Olive Branch & Dove</h3>
+          <span class="concept-subtitle">Rich Biblical Narrative of Peace</span>
+          <p class="concept-desc">
+            Directly evokes Noah's dove returning with an olive leaf (Genesis 8:11) and Christ's baptism (Matthew 3:16). The vine of <strong>G</strong> features a soft budding leaf of new life, while <strong>K</strong> forms the joyful wings of the dove of peace.
+          </p>
+
+          <div class="meaning-list">
+            <strong>Key Highlights:</strong>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> <strong>Olive Leaf Accent:</strong> Promise of peace, fresh starts & healing</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Ascending Dove:</strong> The Holy Spirit's movement in Enschede</li>
+              <li><i class="fa-solid fa-check"></i> <strong>High Storytelling:</strong> Rich biblical message in a modern seal</li>
+            </ul>
+          </div>
+
+          <div class="scales-preview">
+            <div class="scale-item">
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c3Grad)"/>
+                <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 28 77, 48 77" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+                <path d="M49 46 C60 36, 68 28, 81 25 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+                <path d="M49 53 C64 57, 75 66, 81 77 C71 75, 62 67, 49 56" fill="#FFFFFF"/>
+                <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+              </svg>
+              <span>Header (40px)</span>
+            </div>
+            <div class="scale-item">
+              <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c3Grad)"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+                <path d="M26 40 H74" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+              </svg>
+              <span>Favicon (24px)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==========================================
+           VARIATION 3-C4: The Radiant Heart Cross (Embraced Cross)
+           ========================================== -->
+      <div class="proposal-card">
+        <div class="card-preview-area">
+          <span class="proposal-badge-num">3-C4 (Radiant Cross Focus)</span>
+
+          <!-- Large 120px SVG -->
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c4Grad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4E7060"/>
+                <stop offset="100%" stop-color="#2D4D3E"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" rx="26" fill="url(#c4Grad)"/>
+
+            <!-- Left G: Round protective arc -->
+            <path d="M48 22 C26 22, 17 35, 17 50 C17 65, 26 78, 48 78" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+
+            <!-- Prominent Latin Cross with horizontal crossbar -->
+            <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+            <path d="M28 38 H70" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+
+            <!-- Right K: Two dynamic praise wings emerging from the crossbar -->
+            <path d="M49 46 C60 36, 70 28, 82 24 C76 35, 66 44, 49 48" fill="#FFFFFF"/>
+            <path d="M49 53 C64 57, 75 66, 82 76 C70 74, 61 66, 49 55" fill="#FFFFFF"/>
+
+            <!-- Glowing Amber Heart Circle -->
+            <circle cx="49" cy="38" r="5" fill="#E28E4E"/>
+            <circle cx="49" cy="38" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <h3 class="concept-title">3-C4. The Radiant Cross</h3>
+          <span class="concept-subtitle">Strong Crossbar + Wing Integration</span>
+          <p class="concept-desc">
+            Strengthens the Latin Cross presence by including a visible horizontal crossbar, intersecting the vertical beam. The dove wings of <strong>K</strong> and the vine of <strong>G</strong> anchor directly onto this cross, giving it an unmistakable Christian cross identity from any distance.
+          </p>
+
+          <div class="meaning-list">
+            <strong>Key Highlights:</strong>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> <strong>Distinct Crossbar:</strong> Traditional Latin Cross shape clearly emphasized</li>
+              <li><i class="fa-solid fa-check"></i> <strong>G & K Anchored:</strong> Letters grow naturally from the cross itself</li>
+              <li><i class="fa-solid fa-check"></i> <strong>Glowing Center:</strong> Dual-tone amber & white spark of grace</li>
+            </ul>
+          </div>
+
+          <div class="scales-preview">
+            <div class="scale-item">
+              <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c4Grad)"/>
+                <path d="M48 22 C26 22, 17 35, 17 50 C17 65, 26 78, 48 78" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+                <path d="M28 38 H70" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+                <path d="M49 46 C60 36, 70 28, 82 24 C76 35, 66 44, 49 48" fill="#FFFFFF"/>
+                <path d="M49 53 C64 57, 75 66, 82 76 C70 74, 61 66, 49 55" fill="#FFFFFF"/>
+                <circle cx="49" cy="38" r="4.5" fill="#E28E4E"/>
+              </svg>
+              <span>Header (40px)</span>
+            </div>
+            <div class="scale-item">
+              <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="26" fill="url(#c4Grad)"/>
+                <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+                <path d="M26 40 H74" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+              </svg>
+              <span>Favicon (24px)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Header Simulation -->
+    <div class="mockup-section">
+      <h2>How Each 3-C Variation Looks in the Website Header</h2>
+      <p>Simulating the actual website navigation bar with each candidate.</p>
+
+      <div class="header-mockups">
+        <!-- Mockup 3-C1 -->
+        <div class="header-preview-bar" style="border: 2px solid var(--sage); background: #FAFBF9;">
+          <div class="mockup-brand">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+              <rect width="100" height="100" rx="26" fill="url(#c1Grad)"/>
+              <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 30 77, 48 77" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M34 52 H49" stroke="#E1EFE7" stroke-width="7" stroke-linecap="round"/>
+              <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+              <path d="M49 46 C58 35, 68 26, 81 24 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+              <path d="M49 53 C64 57, 75 66, 81 77 C69 75, 60 66, 49 56" fill="#FFFFFF"/>
+              <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+            </svg>
+            <div>
+              <div class="mockup-brand-title">Gospel Koinonia</div>
+              <div class="mockup-brand-sub" style="color: var(--sage);">Enschede • 3-C1 Sculpted Wings (Recommended)</div>
+            </div>
+          </div>
+          <div class="mockup-dummy-nav">
+            <span>About</span>
+            <span>What We Believe</span>
+            <span>Activities</span>
+            <span>Gatherings</span>
+            <span>Contact</span>
+          </div>
+        </div>
+
+        <!-- Mockup 3-C2 -->
+        <div class="header-preview-bar">
+          <div class="mockup-brand">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+              <rect width="100" height="100" rx="26" fill="url(#c2Grad)"/>
+              <path d="M48 24 C28 24, 18 36, 18 50 C18 64, 28 76, 48 76" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+              <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+              <path d="M49 48 C58 38, 66 28, 80 22" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M49 52 C58 62, 66 72, 80 78" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+            </svg>
+            <div>
+              <div class="mockup-brand-title">Gospel Koinonia</div>
+              <div class="mockup-brand-sub" style="color: var(--sage);">Enschede • 3-C2 Linear Harmonies</div>
+            </div>
+          </div>
+          <div class="mockup-dummy-nav">
+            <span>About</span>
+            <span>What We Believe</span>
+            <span>Activities</span>
+            <span>Gatherings</span>
+            <span>Contact</span>
+          </div>
+        </div>
+
+        <!-- Mockup 3-C3 -->
+        <div class="header-preview-bar">
+          <div class="mockup-brand">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+              <rect width="100" height="100" rx="26" fill="url(#c3Grad)"/>
+              <path d="M48 24 C28 24, 18 36, 18 51 C18 66, 28 77, 48 77" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+              <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+              <path d="M49 46 C60 36, 68 28, 81 25 C75 35, 65 44, 49 48" fill="#FFFFFF"/>
+              <path d="M49 53 C64 57, 75 66, 81 77 C71 75, 62 67, 49 56" fill="#FFFFFF"/>
+              <circle cx="49" cy="36" r="4.5" fill="#E28E4E"/>
+            </svg>
+            <div>
+              <div class="mockup-brand-title">Gospel Koinonia</div>
+              <div class="mockup-brand-sub" style="color: var(--sage);">Enschede • 3-C3 Olive & Dove</div>
+            </div>
+          </div>
+          <div class="mockup-dummy-nav">
+            <span>About</span>
+            <span>What We Believe</span>
+            <span>Activities</span>
+            <span>Gatherings</span>
+            <span>Contact</span>
+          </div>
+        </div>
+
+        <!-- Mockup 3-C4 -->
+        <div class="header-preview-bar">
+          <div class="mockup-brand">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+              <rect width="100" height="100" rx="26" fill="url(#c4Grad)"/>
+              <path d="M48 22 C26 22, 17 35, 17 50 C17 65, 26 78, 48 78" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M34 52 H49" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+              <path d="M49 16 V84" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"/>
+              <path d="M28 38 H70" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"/>
+              <path d="M49 46 C60 36, 70 28, 82 24 C76 35, 66 44, 49 48" fill="#FFFFFF"/>
+              <path d="M49 53 C64 57, 75 66, 82 76 C70 74, 61 66, 49 55" fill="#FFFFFF"/>
+              <circle cx="49" cy="38" r="4.5" fill="#E28E4E"/>
+            </svg>
+            <div>
+              <div class="mockup-brand-title">Gospel Koinonia</div>
+              <div class="mockup-brand-sub" style="color: var(--sage);">Enschede • 3-C4 Radiant Cross</div>
+            </div>
+          </div>
+          <div class="mockup-dummy-nav">
+            <span>About</span>
+            <span>What We Believe</span>
+            <span>Activities</span>
+            <span>Gatherings</span>
+            <span>Contact</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
