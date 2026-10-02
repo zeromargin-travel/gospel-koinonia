@@ -1075,68 +1075,163 @@ button, input, textarea, select {
 }
 
 /* ==========================================================================
-   Community Testimonials
+   Statement of Faith / What We Believe Section
    ========================================================================== */
-.testimonial-card {
+.faith-section {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 36px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
-.testimonial-card:hover {
-  transform: translateY(-4px);
+.faith-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Apostles' Creed Card */
+.creed-card {
+  background: #FFFDF9;
+  border: 1.5px solid #E8DFD3;
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
   box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
 }
 
-.quote-stars {
-  color: #E29938;
-  font-size: 0.875rem;
-  margin-bottom: 18px;
+.creed-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-terracotta), var(--color-gold));
 }
 
-.testimonial-text {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.testimonial-author {
+.creed-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border-light);
+  gap: 16px;
+  margin-bottom: 26px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ECE2D5;
 }
 
-.avatar-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-sage), #6B9481);
-  color: #FFFFFF;
+.creed-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background-color: var(--color-terracotta-light);
+  color: var(--color-terracotta);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(200, 104, 53, 0.2);
+}
+
+.creed-title {
+  font-size: 1.35rem;
   font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.testimonial-author strong {
-  display: block;
-  font-size: 0.9375rem;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
-.testimonial-author span {
+.creed-subtitle {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--color-terracotta);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.creed-content {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Faith Pillars (Evangelical Foundations) */
+.faith-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pillar-item {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: all var(--transition-normal);
+}
+
+.pillar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(200, 104, 53, 0.3);
+}
+
+.pillar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  color: var(--color-sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.pillar-item:nth-child(2) .pillar-icon {
+  color: var(--color-terracotta);
+}
+
+.pillar-item:nth-child(3) .pillar-icon {
+  color: var(--color-gold);
+}
+
+.pillar-item:nth-child(4) .pillar-icon {
+  color: var(--color-sage);
+}
+
+.pillar-text h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.pillar-text p {
+  font-size: 0.8875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 960px) {
+  .faith-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .creed-card {
+    padding: 30px 24px;
+  }
 }
 
 /* ==========================================================================
