@@ -14,10 +14,13 @@
   <meta name="geo.position" content="52.2215;6.8937">
   <meta name="ICBM" content="52.2215, 6.8937">
 
+  <link rel="canonical" href="https://gospelkoinonia.com/">
+
   <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Gospel Koinonia Enschede | English Christian Fellowship">
   <meta property="og:description" content="Open English Christian fellowship in Enschede, Netherlands. Sunday gatherings 14:00–15:30, Gospel message, and warm fellowship.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gospelkoinonia.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Gospel Koinonia Enschede">
 
@@ -41,7 +44,8 @@
     "@graph": [
       {
         "@type": "CommunityOrganization",
-        "@id": "#organization",
+        "@id": "https://gospelkoinonia.com/#organization",
+        "url": "https://gospelkoinonia.com/",
         "name": "Gospel Koinonia Enschede",
         "alternateName": [
           "Gospel Koinonia",
@@ -71,7 +75,8 @@
       },
       {
         "@type": "Event",
-        "@id": "#sunday-gathering",
+        "@id": "https://gospelkoinonia.com/#sunday-gathering",
+        "url": "https://gospelkoinonia.com/#schedule",
         "name": "Sunday Worship & Gospel Fellowship",
         "description": "Weekly English Christian gathering in Enschede with acoustic worship, a short Gospel message, and tea & coffee fellowship.",
         "eventStatus": "https://schema.org/EventScheduled",
@@ -79,7 +84,7 @@
         "isAccessibleForFree": true,
         "inLanguage": "en",
         "organizer": {
-          "@id": "#organization"
+          "@id": "https://gospelkoinonia.com/#organization"
         },
         "location": {
           "@type": "Place",
