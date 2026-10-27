@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         formStatus.className = 'form-status error';
-        formStatus.innerHTML = 'Sorry, there was an issue sending your message. Please reach out to us directly via WhatsApp.';
+        formStatus.innerHTML = 'Sorry, there was an issue sending your message. Please try again later or check your network connection.';
         formStatus.style.display = 'block';
       } finally {
         submitBtn.disabled = false;
