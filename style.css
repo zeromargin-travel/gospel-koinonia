@@ -336,6 +336,8 @@ button, input, textarea, select {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(45, 77, 62, 0.22);
   flex-shrink: 0;
+  object-fit: cover;
+  display: block;
   transition: transform var(--transition-fast);
 }
 
